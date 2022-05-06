@@ -1,4 +1,4 @@
-package bai_tap;
+package ss02_loop.bai_tap;
 
 public class Display20FirstPrime {
     public static void main(String[] args) {

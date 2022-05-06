@@ -1,4 +1,4 @@
-package thuc_hanh;
+package ss01_intro_to_java.thuc_hanh;
 
 public class VariableDataType {
     public static void main(String[] args) {

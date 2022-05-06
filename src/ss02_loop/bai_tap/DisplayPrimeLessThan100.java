@@ -1,4 +1,4 @@
-package bai_tap;
+package ss02_loop.bai_tap;
 
 public class DisplayPrimeLessThan100 {
     public static void main(String[] args) {

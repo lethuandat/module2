@@ -1,4 +1,4 @@
-package thuc_hanh;
+package ss03_array_method.thuc_hanh;
 
 public class FindMinElement {
     public static void main(String[] args) {

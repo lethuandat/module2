@@ -1,4 +1,4 @@
-package bai_tap;
+package ss03_array_method.bai_tap;
 
 import java.util.Scanner;
 
