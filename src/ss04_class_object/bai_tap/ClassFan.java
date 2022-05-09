@@ -91,7 +91,9 @@ public class ClassFan {
                         "\ncolor: " + this.getColor() +
                         "\nradius: " + this.getRadius();
             } else {
-                return "fan is off";
+                return "fan is off" +
+                        "\ncolor: " + this.getColor() +
+                        "\nradius: " + this.getRadius();
             }
         }
     }
