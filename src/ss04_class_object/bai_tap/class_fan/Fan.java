@@ -70,6 +70,7 @@ public class Fan {
         this.color = color;
     }
 
+    @Override
     public String toString() {
         if (this.isOn()) {
             return "fan is on\n" +
