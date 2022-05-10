@@ -13,7 +13,7 @@ public class TestQuadraticEquation {
         double c = Double.parseDouble(scanner.nextLine());
 
         QuadraticEquation quadraticEquation = new QuadraticEquation(a, b, c);
-        System.out.println("Phương trình bậc 2: \n"+ quadraticEquation.display());
+        System.out.println("Phương trình bậc 2: \n"+ quadraticEquation);
 
         double r1 = quadraticEquation.getRoot1();
         double r2 = quadraticEquation.getRoot2();

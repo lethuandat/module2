@@ -7,56 +7,59 @@ public class TennisGame {
     public static final String THREE = "Forty";
     public static final String ALL = "-All";
     public static final String DEUCE = "Deuce";
-    public static String getScore(String playerNameFirst, String playerNameSecond, int m_score1, int m_score2) {
-        StringBuilder score = new StringBuilder();
-        int tempScore = 0;
-        if (m_score1 == m_score2) {
-            switch (m_score1) {
-                case 0:
-                    score = new StringBuilder(ZERO + ALL);
-                    break;
-                case 1:
-                    score = new StringBuilder(ONE + ALL);
-                    break;
-                case 2:
-                    score = new StringBuilder(TWO + ALL);
-                    break;
-                case 3:
-                    score = new StringBuilder(THREE + ALL);
-                    break;
-                default:
-                    score = new StringBuilder(DEUCE);
-                    break;
-            }
-        } else if (m_score1 >= 4 || m_score2 >= 4) {
-            int minusResult = m_score1 - m_score2;
-            if (minusResult == 1) score = new StringBuilder("Advantage player1");
-            else if (minusResult == -1) score = new StringBuilder("Advantage player2");
-            else if (minusResult >= 2) score = new StringBuilder("Win for player1");
-            else score = new StringBuilder("Win for player2");
-        } else {
-            for (int i = 1; i < 3; i++) {
-                if (i == 1) tempScore = m_score1;
-                else {
-                    score.append("-");
-                    tempScore = m_score2;
-                }
-                switch (tempScore) {
-                    case 0:
-                        score.append(ZERO);
-                        break;
-                    case 1:
-                        score.append(ONE);
-                        break;
-                    case 2:
-                        score.append(TWO);
-                        break;
-                    case 3:
-                        score.append(THREE);
-                        break;
-                }
-            }
+    public static String getScore(String player1Name, String player2Name, int player1Score, int player2Score) {
+        boolean isDeuce = player1Score == player2Score;
+        boolean isFinish = player1Score >= 4 || player2Score >= 4;
+
+        if (isDeuce) {
+            getDeuceGame(player1Score);
+        } else if (isFinish) {
+            getFinishGame(player1Score, player2Score);
         }
-        return score.toString();
+
+        return player1Name + ": " + getPlayerScore(player1Score) + " - " + player2Name + ": " + getPlayerScore(player2Score);
+    }
+
+    private static String getDeuceGame(int deuceScore) {
+        switch (deuceScore) {
+            case 0:
+                return ZERO + ALL;
+            case 1:
+                return ONE + ALL;
+            case 2:
+                return TWO + ALL;
+            case 3:
+                return THREE + ALL;
+            default:
+                return DEUCE;
+        }
+    }
+
+    private static String getFinishGame(int player1Score, int player2Score) {
+        int minusResult = player1Score - player2Score;
+
+        if (minusResult == 1) {
+            return "Advantage player1";
+        }
+        if (minusResult == -1) {
+            return "Advantage player2";
+        }
+        if (minusResult >= 2) {
+            return "Win for player1";
+        }
+        return "Win for player2";
+    }
+
+    private static String getPlayerScore(int playerScore) {
+        switch (playerScore) {
+            case 0:
+                return ZERO;
+            case 1:
+                return ONE;
+            case 2:
+                return TWO;
+            default:
+                return THREE;
+        }
     }
 }

@@ -2,7 +2,7 @@ package ss07_abstract_class_interface.thuc_hanh.comparable_geometric;
 
 import ss06_Inheritance.thuc_hanh.CircleTest;
 
-public class ComparableCircle extends CircleTest.Circle
+public class ComparableCircle extends Circle
         implements Comparable<ComparableCircle> {
 
     public ComparableCircle() {
