@@ -48,7 +48,8 @@ public class QuadraticEquation {
         return (-this.b - Math.pow(this.getDiscriminant(), 0.5)) / (2 * this.a);
     }
 
-    public String display() {
+    @Override
+    public String toString() {
         return this.a + "x2 + " + this.b + "x + " + this.c + " = 0";
     }
 
