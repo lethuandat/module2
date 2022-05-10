@@ -33,6 +33,5 @@ public class DayInMonth {
                 break;
         }
         System.out.printf("The month '%d' has %s days!", month, daysInMonth);
-
     }
 }

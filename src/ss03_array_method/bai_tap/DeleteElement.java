@@ -27,6 +27,7 @@ public class DeleteElement {
             for (int i = indexDel; i < arrays.length - 1; i++) {
                 arrays[i] = arrays[i + 1];
             }
+            arrays[arrays.length - 1] = 0;
             System.out.printf("%-20s%s", "Elements after: ", "");
             for (int item : arrays) {
                 System.out.print(item + "\t");
