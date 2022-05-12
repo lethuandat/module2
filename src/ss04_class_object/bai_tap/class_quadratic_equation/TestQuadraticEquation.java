@@ -18,6 +18,7 @@ public class TestQuadraticEquation {
         double r1 = quadraticEquation.getRoot1();
         double r2 = quadraticEquation.getRoot2();
         double delta = quadraticEquation.getDiscriminant();
+
         if (delta > 0) {
             System.out.println("Phương trình 2 có nghiệm là: x1 = " + r1 + ", x2 = " + r2);
         } else if (delta == 0) {

@@ -45,17 +45,13 @@ public class Point3D extends Point2D {
     }
 
     public float[] getXYZ() {
-        float[] xYZ = new float[3];
-        xYZ[0] = super.getXY()[0];
-        xYZ[1] = super.getXY()[1];
-        xYZ[2] = this.getZ();
-        return xYZ;
+        return new float[]{super.getX(), super.getY(), this.z};
     }
 
     @Override
     public String toString() {
-        return "Point 3D có tọa độ (" + getXYZ()[0] +
-                ", " + getXYZ()[1] +
-                ", " + getXYZ()[2] + ")";
+        return "Point 3D có tọa độ (" + super.getX() +
+                ", " + super.getY() +
+                ", " + this.z + ")";
     }
 }

@@ -3,6 +3,15 @@ package ss04_class_object.bai_tap.class_quadratic_equation;
 public class QuadraticEquation {
     private double a, b, c;
 
+    public QuadraticEquation() {
+    }
+
+    public QuadraticEquation(double a, double b, double c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
     public double getA() {
         return a;
     }
@@ -27,30 +36,21 @@ public class QuadraticEquation {
         this.c = c;
     }
 
-    public QuadraticEquation() {
-    }
-
-    public QuadraticEquation(double a, double b, double c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-    }
-
     public double getDiscriminant() {
-        return this.b * this.b - 4 * this.a * this.c;
+        return getB() * getB() - 4 * getA() * getC();
     }
 
     public double getRoot1() {
-        return (-this.b + Math.pow(this.getDiscriminant(), 0.5)) / (2 * this.a);
+        return (-getB() + Math.pow(this.getDiscriminant(), 0.5)) / (2 * getA());
     }
 
     public double getRoot2() {
-        return (-this.b - Math.pow(this.getDiscriminant(), 0.5)) / (2 * this.a);
+        return (-getB() - Math.pow(this.getDiscriminant(), 0.5)) / (2 * getA());
     }
 
     @Override
     public String toString() {
-        return this.a + "x2 + " + this.b + "x + " + this.c + " = 0";
+        return getA() + "x2 + " + getB() + "x + " + getC() + " = 0";
     }
 
 }

@@ -34,15 +34,14 @@ public class Point2D {
     }
 
     public float[] getXY() {
-        float[] xY = new float[2];
-        xY[0] = this.getX();
-        xY[1] = this.getY();
-        return xY;
+        return new float[]{this.x, this.y};
     }
 
     @Override
     public String toString() {
-        return "Point 2D có tọa độ (" + getXY()[0] +
-                ", " + getXY()[1] + ")";
+        return "Point2D{" +
+                "x= " + x +
+                ", y= " + y +
+                '}';
     }
 }

@@ -55,6 +55,6 @@ public class Triangle extends Shape {
                 "\ncạnh 3 = " + side3 +
                 "\nchu vi = " + getPerimeter() +
                 "\ndiện tích = " + getArea() +
-                "\nmàu sắc: " + getColor();
+                "\nmàu sắc: " + super.getColor();
     }
 }

@@ -40,21 +40,20 @@ public class MovablePoint extends Point {
     }
 
     public float[] getSpeed() {
-        float[] arrSpeed = new float[2];
-        arrSpeed[0] = this.getXSpeed();
-        arrSpeed[1] = this.getYSpeed();
-        return arrSpeed;
+        return new float[]{xSpeed, ySpeed};
     }
 
     @Override
     public String toString() {
         return "MovablePoint: (" + super.getX() +
                 ", " + super.getY() +
-                "), speed = (" + getSpeed()[0] +
-                ", " + getSpeed()[1] + ")";
+                "), speed = (" + xSpeed +
+                ", " + ySpeed + ")";
     }
 
     public MovablePoint move() {
+        super.setX(super.getX() + xSpeed);
+        super.setY(super.getY() + ySpeed);
         return this;
     }
 }

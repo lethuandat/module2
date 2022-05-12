@@ -10,5 +10,8 @@ public class TestMovablePoint {
 
         movablePoint = new MovablePoint(9.2f, 5.6f, 8.15f, 6.6f);
         System.out.println(movablePoint);
+
+        movablePoint.move();
+        System.out.println(movablePoint);
     }
 }

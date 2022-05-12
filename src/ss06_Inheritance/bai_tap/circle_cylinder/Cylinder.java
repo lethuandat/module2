@@ -20,28 +20,8 @@ public class Cylinder extends Circle {
     }
 
     @Override
-    public void setColor(String color) {
-        super.setColor(color);
-    }
-
-    @Override
-    public void setRadius(double radius) {
-        super.setRadius(radius);
-    }
-
-    @Override
-    public double getRadius() {
-        return super.getRadius();
-    }
-
-    @Override
-    public String getColor() {
-        return super.getColor();
-    }
-
-    @Override
     public double getArea() {
-        return 2 * Math.PI * getRadius() * (getRadius() + height);
+        return super.getArea() * 2 + 2 * Math.PI * super.getRadius() * height;
     }
 
     public double getVolume() {
@@ -50,10 +30,10 @@ public class Cylinder extends Circle {
 
     @Override
     public String toString() {
-        return "Hình trụ có bán kính là " + getRadius() +
-                ", có màu là " + getColor() +
-                ", có chiều cao là " + getHeight() +
-                ", có diện tích là " + getArea() +
+        return "Hình trụ có bán kính là " + super.getRadius() +
+                ", có màu là " + super.getColor() +
+                ", có chiều cao là " + height +
+                ", có diện tích là " + this.getArea() +
                 " và có thể tích là " + getVolume();
     }
 }

@@ -14,7 +14,7 @@ public class Test {
         }
 
         for (Shape value : shapeArr) {
-            value.resize(Math.random() * 100 + 1);
+            value.resize(Math.random() * 99 + 1);
         }
         System.out.println("\n");
         Shape.printShape(shapeArr);
