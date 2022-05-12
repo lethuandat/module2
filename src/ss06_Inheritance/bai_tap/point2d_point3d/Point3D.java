@@ -11,26 +11,6 @@ public class Point3D extends Point2D {
         this.z = z;
     }
 
-    @Override
-    public float getX() {
-        return super.getX();
-    }
-
-    @Override
-    public float getY() {
-        return super.getY();
-    }
-
-    @Override
-    public void setX(float x) {
-        super.setX(x);
-    }
-
-    @Override
-    public void setY(float y) {
-        super.setY(y);
-    }
-
     public float getZ() {
         return z;
     }
