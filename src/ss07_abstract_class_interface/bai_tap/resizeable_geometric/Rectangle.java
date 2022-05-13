@@ -35,7 +35,7 @@ public class Rectangle extends Shape implements Resizeable {
     }
 
     public double getArea() {
-        return width * this.length;
+        return width * length;
     }
 
     public double getPerimeter() {
