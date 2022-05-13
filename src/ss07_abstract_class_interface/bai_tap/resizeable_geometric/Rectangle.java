@@ -1,6 +1,6 @@
 package ss07_abstract_class_interface.bai_tap.resizeable_geometric;
 
-public class Rectangle extends Shape {
+public class Rectangle extends Shape implements Resizeable {
     private double width = 1.0;
     private double length = 1.0;
 
@@ -44,12 +44,13 @@ public class Rectangle extends Shape {
 
     @Override
     public String toString() {
-        return "A Rectangle with width="
+        return "A Rectangle with width = "
                 + getWidth()
-                + " and length="
+                + " and length = "
                 + getLength()
-                + ", which is a subclass of "
-                + super.toString();
+                + ", area = " + getArea()
+                + ", color is " + super.getColor()
+                + ", filled is " + super.isFilled();
     }
 
     @Override

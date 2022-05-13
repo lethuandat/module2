@@ -44,17 +44,12 @@ public class Rectangle extends Shape {
 
     @Override
     public String toString() {
-        return "A Rectangle with width="
+        return "A Rectangle with width = "
                 + getWidth()
-                + " and length="
+                + " and length = "
                 + getLength()
-                + ", which is a subclass of "
-                + super.toString();
-    }
-
-    @Override
-    public void howToColor() {
-        System.out.println("Color two lengths and two widths.");
+                + ", area = "
+                + getArea();
     }
 }
 

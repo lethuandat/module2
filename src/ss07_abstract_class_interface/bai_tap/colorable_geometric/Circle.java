@@ -33,14 +33,9 @@ public class Circle extends Shape {
 
     @Override
     public String toString() {
-        return "A Circle with radius="
+        return "A Circle with radius = "
                 + getRadius()
-                + ", which is a subclass of "
-                + super.toString();
-    }
-
-    @Override
-    public void howToColor() {
-        System.out.println("Color all circles.");
+                + ", area = "
+                + getArea();
     }
 }

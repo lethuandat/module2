@@ -1,6 +1,6 @@
 package ss07_abstract_class_interface.bai_tap.resizeable_geometric;
 
-public class Square extends Shape {
+public class Square extends Rectangle implements Resizeable {
     private double side;
 
     public Square() {
@@ -11,8 +11,9 @@ public class Square extends Shape {
     }
 
     public Square(double side, String color, boolean filled) {
-        super(color,filled);
         this.side = side;
+        color = super.getColor();
+        filled = super.isFilled();
     }
 
     public double getSide() {
@@ -25,16 +26,12 @@ public class Square extends Shape {
 
     @Override
     public String toString() {
-        return "A Square with side="
+        return "A Square with side = "
                 + getSide()
-                + ", which is a subclass of "
-                + super.toString()
-                + ", Area=" +
-                + getArea();
-    }
-
-    double getArea() {
-        return side * side;
+                + ", area=" +
+                + super.getArea()
+                + ", color is " + super.getColor()
+                + ", filled is " + super.isFilled();
     }
 
     @Override

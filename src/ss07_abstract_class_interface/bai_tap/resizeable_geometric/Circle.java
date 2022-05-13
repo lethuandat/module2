@@ -1,6 +1,6 @@
 package ss07_abstract_class_interface.bai_tap.resizeable_geometric;
 
-public class Circle extends Shape{
+public class Circle extends Shape implements Resizeable{
     private double radius = 1.0;
 
     public Circle() {
@@ -33,10 +33,11 @@ public class Circle extends Shape{
 
     @Override
     public String toString() {
-        return "A Circle with radius="
+        return "A Circle with radius = "
                 + getRadius()
-                + ", which is a subclass of "
-                + super.toString();
+                + ", area = " + getArea()
+                + ", color is " + super.getColor()
+                + ", filled is " + super.isFilled();
     }
 
     @Override

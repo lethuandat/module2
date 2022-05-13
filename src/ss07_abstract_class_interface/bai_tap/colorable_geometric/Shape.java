@@ -1,6 +1,6 @@
 package ss07_abstract_class_interface.bai_tap.colorable_geometric;
 
-public abstract class Shape implements Colorable {
+public abstract class Shape {
     private String color = "green";
     private boolean filled = true;
 
@@ -34,11 +34,5 @@ public abstract class Shape implements Colorable {
                 + getColor()
                 + " and "
                 + (isFilled() ? "filled" : "not filled");
-    }
-
-    public static void printShape(Shape[] shape) {
-        for (Shape x : shape) {
-            System.out.println(x.toString());
-        }
     }
 }

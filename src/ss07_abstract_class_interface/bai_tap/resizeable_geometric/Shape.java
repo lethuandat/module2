@@ -1,6 +1,6 @@
 package ss07_abstract_class_interface.bai_tap.resizeable_geometric;
 
-public abstract class Shape implements Resizeable{
+public abstract class Shape {
     private String color = "green";
     private boolean filled = true;
 
@@ -34,11 +34,5 @@ public abstract class Shape implements Resizeable{
                 + getColor()
                 + " and "
                 + (isFilled() ? "filled" : "not filled");
-    }
-
-    public static void printShape(Shape[] shape) {
-        for (Shape x : shape) {
-            System.out.println(x.toString());
-        }
     }
 }
