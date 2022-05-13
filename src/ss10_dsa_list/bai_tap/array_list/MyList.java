@@ -76,13 +76,11 @@ public class MyList<E> {
         return -1;
     }
 
-    public boolean add(E o) {
+    public void add(E o) {
         if (size == elements.length) {
             ensureCapacity(size);
-            elements[size++] = o;
-            return true;
         }
-        return false;
+        elements[size++] = o;
     }
 
     public void ensureCapacity(int minCapacity) {

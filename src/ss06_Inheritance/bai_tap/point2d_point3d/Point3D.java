@@ -30,7 +30,7 @@ public class Point3D extends Point2D {
 
     @Override
     public String toString() {
-        return "Point 3D có tọa độ (" + super.getX() +
+        return "(" + super.getX() +
                 ", " + super.getY() +
                 ", " + this.z + ")";
     }
