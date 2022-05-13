@@ -13,6 +13,22 @@ public class MyList<E> {
         elements = new Object[capacity];
     }
 
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public Object[] getElements() {
+        return elements;
+    }
+
+    public void setElements(Object[] elements) {
+        this.elements = elements;
+    }
+
     public void add(int index, E element) {
         if (size == elements.length) {
             ensureCapacity(elements.length);
@@ -32,10 +48,6 @@ public class MyList<E> {
             size -= 1;
         }
         return (E) elements;
-    }
-
-    public int size() {
-        return size;
     }
 
     public E clone() {
@@ -82,7 +94,10 @@ public class MyList<E> {
     }
 
     public E get(int i) {
-        return (E) elements[i];
+        if (i >= 0 && i < size) {
+            return (E) elements[i];
+        }
+        return null;
     }
 
     public void clear() {

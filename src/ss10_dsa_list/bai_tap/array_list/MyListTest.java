@@ -2,17 +2,29 @@ package ss10_dsa_list.bai_tap.array_list;
 
 public class MyListTest {
     public static void main(String[] args) {
-        MyList<Integer> list = new MyList<>();
-        list = new MyList<>(5);
+        MyList<Integer> myList = new MyList<>();
+        myList.add(0, 1);
+        myList.add(1, 2);
+        myList.add(2, 3);
+        myList.add(3, 4);
+        myList.add(4, 5);
+        System.out.println("List ban đầu: ");
+        printList(myList.getElements());
 
-        list.add(0, 0);
-        list.add(1, 1);
-        list.add(2, 2);
-        list.add(3, 3);
-        list.add(4, 4);
+        System.out.println("\nList sau khi xóa: ");
+        myList.remove(2);
+        printList(myList.getElements());
+        System.out.println("\nList sau khi thêm: ");
+        myList.add(2, 100);
+        printList(myList.getElements());
 
-        System.out.println("(1) " + list);
+    }
 
-
+    public static void printList(Object[] objects) {
+        for (Object item : objects) {
+            if (item != null) {
+                System.out.print(item + " ");
+            }
+        }
     }
 }

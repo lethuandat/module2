@@ -45,12 +45,12 @@ public class Main {
 
     public static void updateProduct() {
         System.out.println("Enter ID product want update: ");
-        int id = Integer.parseInt(input.nextLine());
+        int idUpdate = Integer.parseInt(input.nextLine());
         boolean check = false;
         int indexProduct = 0;
 
         for (int i = 0; i < products.length; i++) {
-            if (products[i] != null && products[i].getId() == id) {
+            if (products[i] != null && products[i].getId() == idUpdate) {
                 check = true;
                 indexProduct = i;
                 break;
@@ -71,6 +71,8 @@ public class Main {
             products[indexProduct].setProducer(producer);
             products[indexProduct].setPrice(price);
             products[indexProduct].setQuantity(quantity);
+
+            System.out.println("Update OK");
         } else {
             System.out.println("This ID does not exist.");
         }
@@ -79,11 +81,11 @@ public class Main {
 
     public static void deleteProduct() {
         System.out.println("Enter ID product want delete: ");
-        int id = Integer.parseInt(input.nextLine());
+        int idDelete = Integer.parseInt(input.nextLine());
         boolean check = false;
         int indexProduct = 0;
         for (int i = 0; i < products.length; i++) {
-            if (products[i] != null && products[i].getId() == id) {
+            if (products[i] != null && products[i].getId() == idDelete) {
                 check = true;
                 indexProduct = i;
                 break;
@@ -92,6 +94,7 @@ public class Main {
 
         if (check) {
             products[indexProduct] = null;
+            System.out.println("Delete OK.");
             Product.count -= 1;
         } else {
             System.out.println("This ID does not exist.");
