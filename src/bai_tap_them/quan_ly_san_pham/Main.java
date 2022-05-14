@@ -1,9 +1,9 @@
-package bai_tap_them;
+package bai_tap_them.quan_ly_san_pham;
 
 import java.util.Scanner;
 
 public class Main {
-    public static Product[] products = new Product[6];
+    public static Product[] products = new Product[100];
     public static Scanner input = new Scanner(System.in);
 
 
@@ -40,7 +40,6 @@ public class Main {
             Product newProduct = new Product(Product.count + 1, name, producer, price, quantity);
             products[Product.count - 1] = newProduct;
         }
-
     }
 
     public static void updateProduct() {
@@ -76,7 +75,6 @@ public class Main {
         } else {
             System.out.println("This ID does not exist.");
         }
-
     }
 
     public static void deleteProduct() {
@@ -149,8 +147,9 @@ public class Main {
                     break;
                 case 6:
                     System.exit(0);
+                default:
+                    System.out.println("Input choose incorrect.");
             }
         } while (true);
     }
-
 }

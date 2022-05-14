@@ -1,4 +1,4 @@
-package bai_tap_them;
+package bai_tap_them.quan_ly_san_pham;
 
 public class Product {
     private int id;
