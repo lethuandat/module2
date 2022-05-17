@@ -2,7 +2,7 @@ package ss10_dsa_list.bai_tap.array_list;
 
 public class MyListTest {
     public static void main(String[] args) {
-        MyList<Integer> myList = new MyList<>(20);
+        MyList<Integer> myList = new MyList<Integer>(20);
 
         myList.add(1);
         myList.add(2);
@@ -23,14 +23,12 @@ public class MyListTest {
         printList(myList.getElements());
 
         System.out.println("\nPhần tử thứ 1 là " + myList.get(1));
-        System.out.println("Phần tử thứ 5 là " + myList.get(5));
+        System.out.println("Phần tử thứ 4 là " + myList.get(4));
         System.out.println("Phần tử thứ 8 là " + myList.get(8));
 
-        System.out.println("Vị trí của giá trị 1 là " + myList.indexOf(1));
-        System.out.println("Vị trí của giá trị 3 là " + myList.indexOf(2));
+        System.out.println("Vị trí của giá trị 4 là " + myList.indexOf(4));
+        System.out.println("Vị trí của giá trị 2 là " + myList.indexOf(2));
         System.out.println("Vị trí của giá trị 8 là " + myList.indexOf(8));
-
-
     }
 
     public static void printList(Object[] objects) {

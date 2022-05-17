@@ -1,5 +1,7 @@
 package ss10_dsa_list.bai_tap.array_list;
 
+import java.util.Arrays;
+
 public class MyList<E> {
     private int size = 0;
     public static final int DEFAULT_CAPACITY = 10;
@@ -30,24 +32,34 @@ public class MyList<E> {
     }
 
     public void add(int index, E element) {
-        if (size == elements.length) {
-            ensureCapacity(elements.length);
+        if (index > elements.length) {
+            throw new IllegalArgumentException("index: " + index);
+        } else {
+            this.ensureCapacity(DEFAULT_CAPACITY);
         }
-        for (int i = size - 1; i >= index; i--) {
-            elements[i + 1] = elements[i];
+        if (elements[index] == null) {
+            elements[index] = element;
+            size++;
+        } else {
+            for (int i = size + 1; i >= index; i--) {
+                elements[i] = elements[i - 1];
+            }
+            elements[index] = element;
+            size++;
         }
-        elements[index] = element;
-        size++;
     }
 
     public E remove(int index) {
-        if (index >= 0 && index < size) {
-            for (int i = index; i < size; i++) {
-                elements[i] = elements[i + 1];
-            }
-            size -= 1;
+        if (index < 0 || index > elements.length) {
+            throw new IllegalArgumentException("Error index: " + index);
         }
-        return (E) elements;
+        E element = (E) elements[index];
+        for (int i = 0; i < size - 1; i++) {
+            elements[i] = elements[i + 1];
+        }
+        elements[size - 1] = null;
+        size--;
+        return element;
     }
 
     public E clone() {
@@ -59,47 +71,48 @@ public class MyList<E> {
     }
 
     public boolean contains(E o) {
-        for (int i = 0; i < size; i++) {
-            if (o.equals(elements[i])) {
-                return true;
-            }
-        }
-        return false;
+        return this.indexOf(o) >= 0;
     }
 
     public int indexOf(E o) {
         for (int i = 0; i < size; i++) {
-            if (elements[i].equals(o)) {
+            if (this.elements[i].equals(o)) {
                 return i;
             }
         }
         return -1;
     }
 
-    public void add(E o) {
+    public boolean add(E o) {
         if (size == elements.length) {
-            ensureCapacity(size);
+            ensureCapacity(DEFAULT_CAPACITY);
         }
-        elements[size++] = o;
+        elements[size] = o;
+        size++;
+        return true;
     }
 
     public void ensureCapacity(int minCapacity) {
-        if (minCapacity >= elements.length) {
-            Object[] newElements = new Object[minCapacity * 2 + 1];
-            System.arraycopy(elements, 0, newElements, 0, size);
-            elements = newElements;
+        if (minCapacity >= 0) {
+            int newSize = this.elements.length + minCapacity;
+            elements = Arrays.copyOf(elements, newSize);
+        } else {
+            throw new IllegalArgumentException("minCapacity: " + minCapacity);
         }
     }
 
-    public E get(int i) {
-        if (i >= 0 && i < size) {
-            return (E) elements[i];
+    public E get(int index) {
+        E element = null;
+        for (int i = 0; i < elements.length; i++) {
+            if (i == index) {
+                element = (E) elements[i];
+            }
         }
-        return null;
+        return element;
     }
 
     public void clear() {
-        elements = new Object[DEFAULT_CAPACITY];
         size = 0;
+        Arrays.fill(elements, null);
     }
 }
