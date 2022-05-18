@@ -30,5 +30,8 @@ public class MyLinkedListTest {
         System.out.println("Xóa \"Linh\"");
         listString.remove("Linh");
         listString.printList();
+
+        listString.addLast("Nam");
+        listString.printList();
     }
 }

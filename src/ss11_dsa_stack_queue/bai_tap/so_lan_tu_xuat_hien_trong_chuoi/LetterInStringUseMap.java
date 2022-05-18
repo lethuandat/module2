@@ -12,17 +12,15 @@ public class LetterInStringUseMap {
         TreeMap<String, Integer> countLetterMap = new TreeMap<>();
 
         int value = 0;
-        String[] arrStr = str.split(" ");
+        String[] arrStr = str.toUpperCase().split(" ");
 
         for (String item : arrStr) {
-            System.out.println(item);
-
-            if (countLetterMap.containsKey(item.toUpperCase())) {
+            if (countLetterMap.containsKey(item)) {
                 value = value + 1;
-                countLetterMap.put(item.toUpperCase(), value);
+                countLetterMap.put(item, value);
             } else {
                 value = 1;
-                countLetterMap.put(item.toUpperCase(), value);
+                countLetterMap.put(item, value);
             }
         }
 

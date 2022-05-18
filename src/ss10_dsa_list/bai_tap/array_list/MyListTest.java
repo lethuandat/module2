@@ -29,6 +29,7 @@ public class MyListTest {
         System.out.println("Vị trí của giá trị 4 là " + myList.indexOf(4));
         System.out.println("Vị trí của giá trị 2 là " + myList.indexOf(2));
         System.out.println("Vị trí của giá trị 8 là " + myList.indexOf(8));
+
     }
 
     public static void printList(Object[] objects) {

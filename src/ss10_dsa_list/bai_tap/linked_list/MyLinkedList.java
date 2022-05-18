@@ -1,6 +1,6 @@
 package ss10_dsa_list.bai_tap.linked_list;
 
-public class MyLinkedList<E> {
+public class MyLinkedList<T> {
     private Node head;
     private int numNodes = 0;
 
@@ -24,7 +24,7 @@ public class MyLinkedList<E> {
         }
     }
 
-    public void add(int index, E element) {
+    public void add(int index, T element) {
         Node temp = head;
         Node holder;
         for (int i = 0; i < index - 1 && temp.next != null; i++) {
@@ -36,14 +36,14 @@ public class MyLinkedList<E> {
         numNodes++;
     }
 
-    public void addFirst(E e) {
+    public void addFirst(T e) {
         Node temp = head;
         head = new Node(e);
         head.next = temp;
         numNodes++;
     }
 
-    public void addLast(E e) {
+    public void addLast(T e) {
         Node temp = head;
         while (temp.next != null) {
             temp = temp.next;
@@ -52,7 +52,7 @@ public class MyLinkedList<E> {
         numNodes++;
     }
 
-    public E remove(int index) {
+    public T remove(int index) {
         if (index < 0 || index > numNodes) {
             throw new IndexOutOfBoundsException();
         }
@@ -69,10 +69,10 @@ public class MyLinkedList<E> {
             temp.next = temp.next.next;
         }
         numNodes--;
-        return (E) data;
+        return (T) data;
     }
 
-    public boolean remove(E e) {
+    public boolean remove(T e) {
         if (head.data.equals(e)) {
             remove(0);
             return true;
@@ -94,22 +94,22 @@ public class MyLinkedList<E> {
         return numNodes;
     }
 
-    public E clone() {
+    public T clone() {
         if (numNodes == 0) {
             throw new NullPointerException();
         }
-        MyLinkedList<E> temp = new MyLinkedList<E>();
+        MyLinkedList<T> temp = new MyLinkedList<T>();
         Node tempNode = head;
-        temp.addFirst((E) tempNode.data);
+        temp.addFirst((T) tempNode.data);
         tempNode = tempNode.next;
         while (tempNode != null) {
-            temp.addLast((E) tempNode.data);
+            temp.addLast((T) tempNode.data);
             tempNode = tempNode.next;
         }
-        return (E) temp;
+        return (T) temp;
     }
 
-    public boolean contains(E o) {
+    public boolean contains(T o) {
         Node temp = head;
         while (temp.next != null) {
             if (temp.data.equals(o)) {
@@ -123,7 +123,7 @@ public class MyLinkedList<E> {
         return false;
     }
 
-    public int indexOf(E o) {
+    public int indexOf(T o) {
         Node temp = head;
         for (int i = 0; i < numNodes; i++) {
             if (temp.getData().equals(o)) {
@@ -134,24 +134,24 @@ public class MyLinkedList<E> {
         return -1;
     }
 
-    public E get(int index) {
+    public T get(int index) {
         Node temp = head;
         for (int i = 0; i < index; i++) {
             temp = temp.next;
         }
-        return (E) temp.data;
+        return (T) temp.data;
     }
 
-    public E getFirst() {
-        return (E) head;
+    public T getFirst() {
+        return (T) head;
     }
 
-    public E getLast() {
+    public T getLast() {
         Node temp = head;
         while (temp.next != null) {
             temp = temp.next;
         }
-        return (E) temp;
+        return (T) temp;
     }
 
     public void clear() {

@@ -9,7 +9,7 @@ public class GenericStackClient {
     }
 
     private static void stackOfIStrings() {
-        MyGenericStack<String> stack = new MyGenericStack();
+        MyGenericStack<String> stack = new MyGenericStack<>();
         stack.push("Five");
         stack.push("Four");
         stack.push("Three");
@@ -24,7 +24,7 @@ public class GenericStackClient {
     }
 
     private static void stackOfIntegers() {
-        MyGenericStack<Integer> stack = new MyGenericStack();
+        MyGenericStack<Integer> stack = new MyGenericStack<>();
         stack.push(5);
         stack.push(4);
         stack.push(3);
