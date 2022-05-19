@@ -11,7 +11,7 @@ public class PalindromeCheck {
         System.out.println("Nhập chuỗi cần kiểm tra:");
         String str = input.nextLine();
 
-        String[] arrStr = str.split("");
+        String[] arrStr = str.toLowerCase().split("");
         Stack<String> stack = new Stack<>();
         Queue<String> queue = new LinkedList<>();
 
@@ -24,6 +24,9 @@ public class PalindromeCheck {
         while (!stack.isEmpty()) {
             if (stack.pop().equals(queue.poll())) {
                 check = true;
+            } else {
+                check = false;
+                break;
             }
         }
 

@@ -92,7 +92,6 @@ public class DecimalToBinary {
             strOctal += stack.pop();
         }
 
-
         System.out.println(numberDecimal + " chuyển sang hệ nhị phân là: " + strBinary);
         System.out.println(numberDecimal + " chuyển sang hệ thập lục phân là: " + strHexadecimal);
         System.out.println(numberDecimal + " chuyển sang hệ bát phân là: " + strOctal);

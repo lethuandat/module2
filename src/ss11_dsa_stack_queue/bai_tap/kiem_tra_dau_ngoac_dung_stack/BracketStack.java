@@ -22,7 +22,6 @@ public class BracketStack {
                     if (left.equals("(")) {
                         bStack.pop();
                     }
-
                 }
             }
         }
@@ -30,11 +29,9 @@ public class BracketStack {
             check = false;
         }
         if (check) {
-            System.out.println("Well");
+            System.out.println("Biểu thức sử dụng đúng dấu ngoặc.");
         } else {
-            System.out.println("???");
+            System.out.println("Biểu thức sử dụng sai dấu ngoặc.");
         }
     }
-
-
 }

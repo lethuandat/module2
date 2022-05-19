@@ -32,6 +32,5 @@ public class IntegerStack {
         }
 
         System.out.println("\nMảng lúc sau: " + Arrays.toString(arr));
-
     }
 }
