@@ -62,7 +62,6 @@ public class ProductManager {
                     System.out.println("Input choose incorrect.");
             }
         } while (true);
-
     }
 
     public static void displayProduct() {
