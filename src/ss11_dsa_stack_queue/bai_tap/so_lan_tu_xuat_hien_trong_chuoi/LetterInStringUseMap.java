@@ -1,6 +1,7 @@
 package ss11_dsa_stack_queue.bai_tap.so_lan_tu_xuat_hien_trong_chuoi;
 
 import java.util.Scanner;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class LetterInStringUseMap {
@@ -16,14 +17,17 @@ public class LetterInStringUseMap {
 
         for (String item : arrStr) {
             if (countLetterMap.containsKey(item)) {
-                value = value + 1;
+                value = countLetterMap.get(item) + 1;
                 countLetterMap.put(item, value);
             } else {
                 value = 1;
                 countLetterMap.put(item, value);
             }
         }
-
-        System.out.println(countLetterMap);
+        Set<String> keySet = countLetterMap.keySet();
+        System.out.println("Số lần xuất hiện các từ trong chuỗi: ");
+        for (String item : keySet) {
+            System.out.println(item + ": " + countLetterMap.get(item));
+        }
     }
 }

@@ -52,7 +52,7 @@ public class DecimalToBinary {
                     strHexadecimal += 6;
                     break;
                 case 7:
-                    strHexadecimal += 8;
+                    strHexadecimal += 7;
                     break;
                 case 8:
                     strHexadecimal += 8;

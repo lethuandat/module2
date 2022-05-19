@@ -25,7 +25,7 @@ public class BracketStack {
                 }
             }
         }
-        if (bStack.size() > 0) {
+        if (!bStack.isEmpty()) {
             check = false;
         }
         if (check) {
