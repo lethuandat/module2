@@ -13,8 +13,8 @@ public class DemergeQueue {
         personnelList.add(5, new Personnel("Lê Thị F", "Nữ", 1995));
         personnelList.add(6, new Personnel("Lê Thị G", "Nữ", 1993));
 
-        Queue<Personnel> nuQueue = new LinkedList<>();
-        Queue<Personnel> namQueue = new LinkedList<>();
+        Queue<Personnel> womanQueue = new LinkedList<>();
+        Queue<Personnel> manQueue = new LinkedList<>();
         Collections.sort(personnelList);
 
         for (Personnel item : personnelList) {
@@ -23,18 +23,18 @@ public class DemergeQueue {
 
         for (Personnel personnel : personnelList) {
             if (personnel.getGender().equals("Nữ")) {
-                nuQueue.add(personnel);
+                womanQueue.add(personnel);
             } else {
-                namQueue.add(personnel);
+                manQueue.add(personnel);
             }
         }
         System.out.println("Danh sách nữ/nam theo năm sinh:");
-        while (!nuQueue.isEmpty()) {
-            System.out.println(nuQueue.poll());
+        while (!womanQueue.isEmpty()) {
+            System.out.println(womanQueue.poll());
         }
 
-        while (!namQueue.isEmpty()) {
-            System.out.println(namQueue.poll());
+        while (!manQueue.isEmpty()) {
+            System.out.println(manQueue.poll());
         }
     }
 }
