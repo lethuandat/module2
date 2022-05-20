@@ -1,6 +1,6 @@
-package ss12_java_collection_framework.bai_tap.use_arraylist_linkedlist_trong_jcf.dung_array_list;
+package ss12_java_collection_framework.bai_tap.use_arraylist_linkedlist_trong_jcf.dung_linked_list.models;
 
-public class Product implements Comparable<Product>{
+public class Product implements Comparable<Product> {
     private int productID;
     private String productName;
     private double productPrice;

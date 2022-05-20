@@ -1,4 +1,6 @@
-package ss12_java_collection_framework.bai_tap.use_arraylist_linkedlist_trong_jcf.dung_array_list;
+package ss12_java_collection_framework.bai_tap.use_arraylist_linkedlist_trong_jcf.dung_linked_list.util;
+
+import ss12_java_collection_framework.bai_tap.use_arraylist_linkedlist_trong_jcf.dung_linked_list.models.Product;
 
 import java.util.Comparator;
 
