@@ -3,6 +3,7 @@ package ss12_java_collection_framework.bai_tap.use_arraylist_linkedlist_trong_jc
 import ss12_java_collection_framework.bai_tap.use_arraylist_linkedlist_trong_jcf.dung_array_list.models.Product;
 import ss12_java_collection_framework.bai_tap.use_arraylist_linkedlist_trong_jcf.dung_array_list.util.ProductNameComparator;
 import ss12_java_collection_framework.bai_tap.use_arraylist_linkedlist_trong_jcf.dung_array_list.util.ProductPriceComparator;
+import ss12_java_collection_framework.bai_tap.use_arraylist_linkedlist_trong_jcf.dung_array_list.util.ProductPriceDownComparator;
 import ss12_java_collection_framework.bai_tap.use_arraylist_linkedlist_trong_jcf.dung_array_list.util.ProductQuantityComparator;
 
 import java.util.ArrayList;
@@ -120,8 +121,9 @@ public class ProductServicesImpl implements IProductServices {
     public void sortProduct() {
         System.out.println("Sort by: ");
         System.out.println("1. Name");
-        System.out.println("2. Price");
+        System.out.println("2. Price up");
         System.out.println("3. Quantity");
+        System.out.println("4. Price down");
         int choose = Integer.parseInt(input.nextLine());
         switch (choose) {
             case 1:
@@ -134,6 +136,10 @@ public class ProductServicesImpl implements IProductServices {
                 break;
             case 3:
                 productList.sort(new ProductQuantityComparator());
+                displayProduct();
+                break;
+            case 4:
+                productList.sort(new ProductPriceDownComparator());
                 displayProduct();
                 break;
             default:

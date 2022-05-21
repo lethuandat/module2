@@ -1,4 +1,4 @@
-package giai_thuat_nhom;
+package giai_thuat_nhom.hinh_thoi_rong;
 
 import java.util.Scanner;
 

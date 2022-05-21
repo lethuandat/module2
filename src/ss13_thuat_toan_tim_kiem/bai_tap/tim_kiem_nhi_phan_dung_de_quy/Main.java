@@ -4,16 +4,16 @@ import java.util.Scanner;
 
 public class Main {
     public static int binarySearch(int[] array, int left, int right, int value) {
-        while (right >= left) {
+        if (right >= left) {
             int middle = (left + right) / 2;
             if (value == array[middle]) {
                 return middle;
             } else if (value > array[middle]) {
                 left = middle + 1;
-                binarySearch(array, left, right, value);
+                return binarySearch(array, left, right, value);
             } else {
                 right = middle - 1;
-                binarySearch(array, left, right, value);
+                return binarySearch(array, left, right, value);
             }
         }
         return -1;

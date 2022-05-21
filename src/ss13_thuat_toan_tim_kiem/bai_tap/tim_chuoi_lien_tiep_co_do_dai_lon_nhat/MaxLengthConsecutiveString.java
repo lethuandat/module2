@@ -33,4 +33,12 @@ public class MaxLengthConsecutiveString {
         }
         System.out.println();
     }
+    /*********************************************************************************
+     * Tính toán độ phức tạp của bài toán này:                                        *
+     * 	1 vòng lặp * 3 câu lệnh =  O(n) * (O(1) + O(1) + O(1)) = O(n);                                                *
+     * 	1 vòng lặp * 1 câu lệnh = O(m) * O(1) = O(m);                                              *
+     *                                                                                *
+     * 	T(n) = O(n) + O(m) = O(max(m, n) = O(n);                                                                  *
+     *  Độ phức tạp của bài toán là O(n).                                          	  *
+     *********************************************************************************/
 }
