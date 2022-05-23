@@ -1,7 +1,10 @@
 package bai_tap_them.quan_ly_nhan_vien_2.model;
 
+import java.math.BigDecimal;
+
 public class PublicEmployee extends Employee {
     private int workDays;
+
     //2 constructor cùng tên nhưng khác tham số -> đa hình ở compile (cơ chế overloading)
     public PublicEmployee() {
     }
@@ -25,7 +28,7 @@ public class PublicEmployee extends Employee {
                 super.toString() +
                 ", workDays: " +
                 workDays +
-                ", salary: " + getSalary();
+                ", salary: " + new BigDecimal(getSalary());
     }
 
     //overriding phương thức getSalary() của lớp cha, đa hình ở runtime, khi chạy

@@ -2,6 +2,8 @@ package bai_tap_them.quan_ly_nhan_vien_2.model;
 
 import bai_tap_them.quan_ly_nhan_vien_2.service.IEmployeeService;
 
+import java.math.BigDecimal;
+
 public class ProductionStaff extends Employee implements IEmployeeService {
     private int numbersProduct;
 
@@ -28,7 +30,7 @@ public class ProductionStaff extends Employee implements IEmployeeService {
                 super.toString() +
                 ", numbersProduct: " +
                 numbersProduct +
-                ", salary: " + getSalary();
+                ", salary: " + new BigDecimal(getSalary());
     }
 
     //overriding phương thức getSalary() của lớp cha, đa hình ở runtime, khi chạy

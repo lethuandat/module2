@@ -8,9 +8,9 @@ import bai_tap_them.quan_ly_nhan_vien_2.util.EmployeeSalaryComparator;
 
 import java.util.*;
 
-public class EmployLinkedListImpl {
+public class EmployeeLinkedList {
     static List<Employee> employeeLinkedList = new LinkedList<>();
-    static Map<Integer, Employee> integerEmployeeMap = new LinkedHashMap<>();
+
 
     static {
         employeeLinkedList.add(new ManagementStaff("Nam", "12/02/1990", "Đà Nẵng", 10000000, 5.5));
@@ -18,27 +18,19 @@ public class EmployLinkedListImpl {
         employeeLinkedList.add(new PublicEmployee("Long", "14/02/1976", "Đà Nẵng", 30));
         employeeLinkedList.add(new ManagementStaff("Hùng", "20/12/1988", "Hà Nội", 20000000, 10.5));
         employeeLinkedList.add(new ManagementStaff("Dương", "20/12/1988", "Hà Nội", 20000000, 10.5));
-
-        integerEmployeeMap.put(1, new ManagementStaff("Nam", "12/02/1990", "Đà Nẵng", 10000000, 5.5));
-        integerEmployeeMap.put(2, new ProductionStaff("Linh", "20/03/1993", "Quảng Nam", 200));
-        integerEmployeeMap.put(3, new PublicEmployee("Long", "14/02/1976", "Đà Nẵng", 30));
-        integerEmployeeMap.put(4, new ManagementStaff("Hùng", "20/12/1988", "Hà Nội", 20000000, 10.5));
-        integerEmployeeMap.put(5, new ManagementStaff("Dương", "20/12/1988", "Hà Nội", 20000000, 10.5));
     }
 
     public void sortByName() {
         Collections.sort(employeeLinkedList);
+        for (Employee employee : employeeLinkedList) {
+            System.out.println(employee);
+        }
     }
 
     public void sortBySalary() {
         employeeLinkedList.sort(new EmployeeSalaryComparator());
-    }
-
-    //Dùng containsKey() để kiểm tra xem Mã NV đã tồn tại hay chưa
-    public void displayByLinkedHashMap() {
-        Set<Integer> keySet = integerEmployeeMap.keySet();
-        for (Integer item : keySet) {
-            System.out.println("Mã NV: " + item + ", " + integerEmployeeMap.get(item));
+        for (Employee employee : employeeLinkedList) {
+            System.out.println(employee);
         }
     }
 

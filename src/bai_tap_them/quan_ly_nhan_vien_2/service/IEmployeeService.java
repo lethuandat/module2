@@ -7,3 +7,9 @@ public interface IEmployeeService {
     //Thì tất cả các lớp nhân viên phải overriding lại phương thức chấm công ( ở đây chỉ có nhân viên quản lý và sản xuất mới cần chấm công)
     String keepingTime();
 }
+/**
+ * Khi một nhóm đối tượng có cùng bản chất kế thừa từ một class thì sử dụng abstract class.
+ * Khi một nhóm đối tượng không có cùng bản chất nhưng chúng có hành động giống nhau thì sử dụng interface.
+ * Nếu muốn 1 lớp chứa một phương thức cụ thể nhưng muốn triển khai thực sự phương thức đó để được quyết định bởi các lớp con,
+ * thì có thể khai báo phương thức đó trong lớp cha ở dạng abstract.
+ */

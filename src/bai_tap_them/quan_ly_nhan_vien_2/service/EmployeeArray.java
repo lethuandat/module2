@@ -5,7 +5,7 @@ import bai_tap_them.quan_ly_nhan_vien_2.model.ManagementStaff;
 import bai_tap_them.quan_ly_nhan_vien_2.model.ProductionStaff;
 import bai_tap_them.quan_ly_nhan_vien_2.model.PublicEmployee;
 
-public class EmployeeArrayImpl {
+public class EmployeeArray {
     static Employee[] employees = new Employee[1000];
     //Nếu có 1001 nhân viên thì chương trình xảy ra lỗi, vì array độ dài mảng cố định không thay đổi được.
 
