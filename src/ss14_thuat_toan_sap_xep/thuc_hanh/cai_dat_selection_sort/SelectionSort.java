@@ -1,5 +1,7 @@
 package ss14_thuat_toan_sap_xep.thuc_hanh.cai_dat_selection_sort;
 
+import java.util.Arrays;
+
 public class SelectionSort {
     static double[] list = {1, 9, 4.5, 6.6, 5.7, -4.5};
 
@@ -17,6 +19,7 @@ public class SelectionSort {
                 list[currentMinIndex] = list[i];
                 list[i] = currentMin;
             }
+            System.out.println(Arrays.toString(list));
         }
     }
 

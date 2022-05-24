@@ -1,5 +1,7 @@
 package ss14_thuat_toan_sap_xep.thuc_hanh.cai_dat_bubble_sort;
 
+import java.util.Arrays;
+
 public class BubbleSort {
     static int[] list = {2, 3, 2, 5, 6, 1, -2, 3, 14, 12};
 
@@ -16,6 +18,7 @@ public class BubbleSort {
                     needNextPass = true;
                 }
             }
+            System.out.println(Arrays.toString(list));
         }
     }
 
