@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class TriangleCheck {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        TriangleCheck triangleCheck = new TriangleCheck();
         boolean check;
         System.out.println("Nhập độ dài 3 cạnh của tam giác: ");
         double edge1;
@@ -20,7 +19,7 @@ public class TriangleCheck {
                 edge2 = Double.parseDouble(input.nextLine());
                 System.out.println("Nhập cạnh thứ 3 ");
                 edge3 = Double.parseDouble(input.nextLine());
-                triangleCheck.checkTriangle(edge1, edge2, edge3);
+                checkTriangle(edge1, edge2, edge3);
             } catch (IllegalTriangleException e) {
                 check = true;
                 System.out.println("Nhập lại:");
@@ -32,7 +31,7 @@ public class TriangleCheck {
 
     }
 
-    private void checkTriangle(double a, double b, double c) throws IllegalTriangleException {
+    private static void checkTriangle(double a, double b, double c) throws IllegalTriangleException {
         if (a <= 0 || b <= 0 || c <= 0) {
             throw new IllegalTriangleException("Lỗi, cạnh tam giác phải lớn hơn 0!");
         } else if (a + b <= c) {
