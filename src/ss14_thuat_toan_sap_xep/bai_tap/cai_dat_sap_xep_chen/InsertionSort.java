@@ -6,14 +6,17 @@ public class InsertionSort {
     public static void insertionSort(int[] array) {
         int pos;
         int x;
+        //Mảng hiện hành
         for (int i = 1; i < array.length; i++) {
             x = array[i];
             pos = i;
+            //Mảng con đã sắp xếp (array)
             while (pos > 0 && x < array[pos - 1]) {
                 array[pos] = array[pos - 1];
                 pos--;
             }
             array[pos] = x;
+            //Kết thúc mảng con
         }
     }
 
