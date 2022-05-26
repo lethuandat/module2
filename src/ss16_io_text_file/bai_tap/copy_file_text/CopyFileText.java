@@ -21,9 +21,9 @@ public class CopyFileText {
                 while ((line = bufferedReader.readLine()) != null) {
                     bufferedWriter.write(line);
                     bufferedWriter.newLine();
-                    count++;
+                    count += line.length();
                 }
-                System.out.println("Number of characters: " + count);
+                bufferedWriter.write("Number of characters: " + count);
             } catch (IOException e) {
                 e.printStackTrace();
             }
