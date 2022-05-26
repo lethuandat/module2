@@ -28,7 +28,6 @@ public class TriangleCheck {
                 System.out.println("Không được nhập kí tự, nhập lại.");
             }
         } while (check);
-
     }
 
     private static void checkTriangle(double a, double b, double c) throws IllegalTriangleException {
