@@ -1,4 +1,4 @@
-package ss18_string_regex.bai_tap.validate_class_name;
+package ss19_string_regex.bai_tap.validate_class_name;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package ss18_string_regex.thuc_hanh.validate_email;
+package ss19_string_regex.thuc_hanh.validate_email;
 
 public class EmailExampleTest {
     private static EmailExample emailExample;

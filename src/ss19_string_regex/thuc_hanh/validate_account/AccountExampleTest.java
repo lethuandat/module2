@@ -1,4 +1,4 @@
-package ss18_string_regex.thuc_hanh.validate_account;
+package ss19_string_regex.thuc_hanh.validate_account;
 
 public class AccountExampleTest {
     private static AccountExample accountExample;

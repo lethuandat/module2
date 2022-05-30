@@ -1,4 +1,4 @@
-package ss18_string_regex.bai_tap.crawl_news;
+package ss19_string_regex.bai_tap.crawl_news;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
