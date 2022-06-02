@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="codegym-file-utils">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/src/ss22_structural_dp/adapter/codegym-file-utils.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ss22_structural_dp/thuc_hanh/adapter/codegym-file-utils.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
