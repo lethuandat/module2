@@ -6,7 +6,6 @@ import bai_tap_them.quan_ly_benh_an.model.VipPatient;
 import bai_tap_them.quan_ly_benh_an.util.NotFoundMedicalRecordException;
 import bai_tap_them.quan_ly_benh_an.util.ReadAndWrite;
 import bai_tap_them.quan_ly_benh_an.util.RegexData;
-import com.sun.scenario.effect.impl.state.AccessHelper;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -44,7 +43,6 @@ public class PatientServiceImpl implements IService {
                 default:
                     System.out.println("Nhập không đúng, mời nhập lại:");
             }
-
         } while (true);
     }
 

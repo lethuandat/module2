@@ -1,5 +1,7 @@
 package bai_tap_them.quan_ly_tien_dien.model;
 
+import bai_tap_them.quan_ly_tien_dien.comma.Comma;
+
 public class Check {
     private String idCheck;
     private String idCustomer;
@@ -71,11 +73,18 @@ public class Check {
     @Override
     public String toString() {
         return "idCheck: " + idCheck +
-                ", idCustomer='" + idCustomer +
-                ", day='" + day +
-                ", quantity=" + quantity +
-                ", unitPrice=" + unitPrice +
-                ", totalMoney=" + totalMoney +
-                '}';
+                ", idCustomer: " + idCustomer +
+                ", day: " + day +
+                ", quantity: " + quantity +
+                ", unitPrice: " + unitPrice +
+                ", totalMoney: " + totalMoney;
+    }
+
+    public String getInfo() {
+        return idCheck + Comma.COMMA +
+                idCustomer + Comma.COMMA +
+                day + Comma.COMMA +
+                quantity + Comma.COMMA +
+                unitPrice + Comma.COMMA + totalMoney;
     }
 }

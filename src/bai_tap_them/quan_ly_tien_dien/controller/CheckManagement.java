@@ -41,10 +41,10 @@ public class CheckManagement {
                     checkService.add();
                     break;
                 case "5":
-                    checkService.display();
+                    checkService.edit();
                     break;
                 case "6":
-                    checkService.edit();
+                    checkService.display();
                     break;
                 case "7":
                     System.exit(7);
