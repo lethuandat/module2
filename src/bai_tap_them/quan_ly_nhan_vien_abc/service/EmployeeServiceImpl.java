@@ -39,6 +39,7 @@ public class EmployeeServiceImpl implements IService {
                         strings[4],
                         Integer.parseInt(strings[5]),
                         Double.parseDouble(strings[6]));
+                employeeList.add(produceEmployee);
             } else {
                 ManagerEmployee managerEmployee = new ManagerEmployee(Integer.parseInt(strings[0]),
                         strings[1],
@@ -47,6 +48,7 @@ public class EmployeeServiceImpl implements IService {
                         strings[4],
                         Double.parseDouble(strings[5]),
                         Double.parseDouble(strings[6]));
+                employeeList.add(managerEmployee);
             }
         }
 
@@ -95,6 +97,7 @@ public class EmployeeServiceImpl implements IService {
                         strings[4],
                         Integer.parseInt(strings[5]),
                         Double.parseDouble(strings[6]));
+                employeeList.add(produceEmployee);
             } else {
                 ManagerEmployee managerEmployee = new ManagerEmployee(Integer.parseInt(strings[0]),
                         strings[1],
@@ -103,6 +106,7 @@ public class EmployeeServiceImpl implements IService {
                         strings[4],
                         Double.parseDouble(strings[5]),
                         Double.parseDouble(strings[6]));
+                employeeList.add(managerEmployee);
             }
         }
 
@@ -127,11 +131,10 @@ public class EmployeeServiceImpl implements IService {
 
         System.out.println("Enter employee date: ");
         boolean check = true;
-        LocalDate date = null;
+        LocalDate date = LocalDate.parse(RegexData.regexStr(scanner.nextLine(), REGEX_TIME, "Input date wrong. Input again!"), formatter);
         LocalDate now = null;
 
         while (check) {
-            date = LocalDate.parse(RegexData.regexStr(scanner.nextLine(), REGEX_TIME, "Input date wrong. Input again!"), formatter);
             now = LocalDate.now();
             int current = Period.between(date, now).getYears();
             if (current >= 18) {
@@ -175,6 +178,7 @@ public class EmployeeServiceImpl implements IService {
                         strings[4],
                         Integer.parseInt(strings[5]),
                         Double.parseDouble(strings[6]));
+                employeeList.add(produceEmployee);
             } else {
                 ManagerEmployee managerEmployee = new ManagerEmployee(Integer.parseInt(strings[0]),
                         strings[1],
@@ -183,6 +187,7 @@ public class EmployeeServiceImpl implements IService {
                         strings[4],
                         Double.parseDouble(strings[5]),
                         Double.parseDouble(strings[6]));
+                employeeList.add(managerEmployee);
             }
         }
 
@@ -207,11 +212,10 @@ public class EmployeeServiceImpl implements IService {
 
         System.out.println("Enter employee date: ");
         boolean check = true;
-        LocalDate date = null;
+        LocalDate date = LocalDate.parse(RegexData.regexStr(scanner.nextLine(), REGEX_TIME, "Input date wrong. Input again!"), formatter);
         LocalDate now = null;
 
         while (check) {
-            date = LocalDate.parse(RegexData.regexStr(scanner.nextLine(), REGEX_TIME, "Input date wrong. Input again!"), formatter);
             now = LocalDate.now();
             int current = Period.between(date, now).getYears();
             if (current >= 18) {
@@ -256,6 +260,7 @@ public class EmployeeServiceImpl implements IService {
                         strings[4],
                         Integer.parseInt(strings[5]),
                         Double.parseDouble(strings[6]));
+                employeeList.add(produceEmployee);
             } else {
                 ManagerEmployee managerEmployee = new ManagerEmployee(Integer.parseInt(strings[0]),
                         strings[1],
@@ -264,25 +269,12 @@ public class EmployeeServiceImpl implements IService {
                         strings[4],
                         Double.parseDouble(strings[5]),
                         Double.parseDouble(strings[6]));
+                employeeList.add(managerEmployee);
             }
         }
 
         System.out.println("Enter id employee you want to remove:");
-        String delIdEmployee = null;
-        boolean flag = true;
-
-        do {
-            flag = false;
-            try {
-                delIdEmployee = scanner.nextLine();
-                if (!delIdEmployee.matches(REGEX_PRODUCE) || !delIdEmployee.matches(REGEX_MANAGER)) {
-                    flag = true;
-                    throw new NotFoundProductException("ID Employee not correct.");
-                }
-            } catch (NotFoundProductException e) {
-                System.err.println(e.getMessage());
-            }
-        } while (flag);
+        String delIdEmployee = scanner.nextLine();
 
         boolean check = false;
         int index = 0;
@@ -320,7 +312,11 @@ public class EmployeeServiceImpl implements IService {
                     System.out.println("Input wrong!");
             }
         } else {
-            System.out.println("ID employee is incorrect!");
+            try {
+                throw new NotFoundProductException("ID employee is not current!");
+            } catch (NotFoundProductException e) {
+                System.err.println(e.getMessage());
+            }
         }
 
     }
@@ -338,6 +334,7 @@ public class EmployeeServiceImpl implements IService {
                         strings[4],
                         Integer.parseInt(strings[5]),
                         Double.parseDouble(strings[6]));
+                employeeList.add(produceEmployee);
             } else {
                 ManagerEmployee managerEmployee = new ManagerEmployee(Integer.parseInt(strings[0]),
                         strings[1],
@@ -346,6 +343,7 @@ public class EmployeeServiceImpl implements IService {
                         strings[4],
                         Double.parseDouble(strings[5]),
                         Double.parseDouble(strings[6]));
+                employeeList.add(managerEmployee);
             }
         }
 

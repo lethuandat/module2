@@ -66,7 +66,7 @@ public abstract class Employee {
                 ", ID: " + idEmployee +
                 ", name: " + name +
                 ", date: " + date +
-                ", address: '" + address;
+                ", address: " + address;
     }
 
     public abstract String getInfo();
