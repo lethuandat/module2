@@ -17,6 +17,8 @@ public class CinemaManagement {
             System.out.println("1. List all showtime");
             System.out.println("2. Add showtime");
             System.out.println("3. Remove showtime");
+            System.out.println("4. Exit");
+            System.out.println("Enter your choose:");
             chosen = scanner.nextLine();
 
             switch (chosen) {
@@ -29,6 +31,8 @@ public class CinemaManagement {
                 case "3":
                     service.remove();
                     break;
+                case "4":
+                    System.exit(4);
                 default:
                     System.out.println("Your choose is incorrect! Please input again:");
             }

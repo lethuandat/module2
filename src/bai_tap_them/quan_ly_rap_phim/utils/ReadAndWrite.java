@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadAndWrite {
+    static List<String[]> list = new ArrayList<>();
+    static List<Cinema> cinemaList = new ArrayList<>();
+
     public static void writeTextFile(String pathFile, String data) {
         File file = new File(pathFile);
         try (FileWriter fileWriter = new FileWriter(file, false);
@@ -36,9 +39,18 @@ public class ReadAndWrite {
         return stringList;
     }
 
+    public static void writeCinemaFile() {
+        StringBuilder line = new StringBuilder();
+        for (Cinema cinema : cinemaList) {
+            line.append(cinema.getInfo()).append("\n");
+        }
+
+        ReadAndWrite.writeTextFile("src\\bai_tap_them\\quan_ly_rap_phim\\data\\cinema.csv", line.toString());
+    }
+
     public static List<Cinema> readCinemaFile() {
-        List<Cinema> cinemaList = new ArrayList<>();
-        List<String[]> list = readTextFile("src\\bai_tap_them\\quan_ly_rap_phim\\data\\cinema.csv");
+        list = readTextFile("src\\bai_tap_them\\quan_ly_rap_phim\\data\\cinema.csv");
+        cinemaList.clear();
         for (String[] item : list) {
             Cinema cinema = new Cinema(item[0], item[1], LocalDate.parse(item[2]), Integer.parseInt(item[3]));
             cinemaList.add(cinema);
