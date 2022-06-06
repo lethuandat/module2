@@ -1,6 +1,6 @@
 package bai_tap_them.quan_ly_nhan_vien_abc.service;
 
-import bai_tap_them.quan_ly_dien_thoai.utils.NotFoundProductException;
+import bai_tap_them.quan_ly_nhan_vien_abc.exception.NotFoundEmployeeException;
 import bai_tap_them.quan_ly_nhan_vien_abc.model.Employee;
 import bai_tap_them.quan_ly_nhan_vien_abc.model.ManagerEmployee;
 import bai_tap_them.quan_ly_nhan_vien_abc.model.ProduceEmployee;
@@ -22,41 +22,17 @@ public class EmployeeServiceImpl implements IService {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    List<String[]> list = new ArrayList<>();
     List<Employee> employeeList = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
     @Override
     public void display() {
-        list = ReadAndWrite.readTextFile("src\\bai_tap_them\\quan_ly_nhan_vien_abc\\data\\employee.csv");
-        employeeList.clear();
-        for (String[] strings : list) {
-            if (strings[1].contains("NVSX")) {
-                ProduceEmployee produceEmployee = new ProduceEmployee(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        LocalDate.parse(strings[3]),
-                        strings[4],
-                        Integer.parseInt(strings[5]),
-                        Double.parseDouble(strings[6]));
-                employeeList.add(produceEmployee);
-            } else {
-                ManagerEmployee managerEmployee = new ManagerEmployee(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        LocalDate.parse(strings[3]),
-                        strings[4],
-                        Double.parseDouble(strings[5]),
-                        Double.parseDouble(strings[6]));
-                employeeList.add(managerEmployee);
-            }
-        }
+        employeeList = ReadAndWrite.readEmployee();
 
         System.out.println("List of employee: ");
         for (Employee employee : employeeList) {
             System.out.println(employee);
         }
-
     }
 
     @Override
@@ -85,43 +61,26 @@ public class EmployeeServiceImpl implements IService {
         } while (true);
     }
 
-    public void addManager() {
-        list = ReadAndWrite.readTextFile("src\\bai_tap_them\\quan_ly_nhan_vien_abc\\data\\employee.csv");
-        employeeList.clear();
-        for (String[] strings : list) {
-            if (strings[1].contains("NVSX")) {
-                ProduceEmployee produceEmployee = new ProduceEmployee(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        LocalDate.parse(strings[3]),
-                        strings[4],
-                        Integer.parseInt(strings[5]),
-                        Double.parseDouble(strings[6]));
-                employeeList.add(produceEmployee);
-            } else {
-                ManagerEmployee managerEmployee = new ManagerEmployee(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        LocalDate.parse(strings[3]),
-                        strings[4],
-                        Double.parseDouble(strings[5]),
-                        Double.parseDouble(strings[6]));
-                employeeList.add(managerEmployee);
-            }
-        }
+    public LocalDate inputDate() {
+        System.out.println("Enter employee date: ");
+        LocalDate date = LocalDate.parse(RegexData.regexStr(scanner.nextLine(), REGEX_TIME, "Input date wrong. Input again!"), formatter);
+        LocalDate now;
 
-        int id = 0;
-        int max = 0;
-        if (employeeList.size() == 0) {
-            id = 1;
-        } else {
-            for (int i = 0; i < employeeList.size(); i++) {
-                if (max < employeeList.get(i).getId()) {
-                    max = employeeList.get(i).getId();
-                }
+        do {
+            now = LocalDate.now();
+            int current = Period.between(date, now).getYears();
+            if (current >= 18) {
+                return date;
+            } else {
+                System.out.println("Date must >= 18 years old! Input again!");
+                date = LocalDate.parse(RegexData.regexStr(scanner.nextLine(), REGEX_TIME, "Input date wrong. Input again!"), formatter);
             }
-            id = max + 1;
-        }
+        } while (true);
+    }
+
+    public void addManager() {
+        employeeList = ReadAndWrite.readEmployee();
+        int id = increaseID();
 
         System.out.println("Enter employee id: ");
         String idEmployee = RegexData.regexStr(scanner.nextLine(), REGEX_MANAGER, "ID manager: NVQL-XXX. Input again!");
@@ -129,21 +88,7 @@ public class EmployeeServiceImpl implements IService {
         System.out.println("Enter employee name: ");
         String name = scanner.nextLine();
 
-        System.out.println("Enter employee date: ");
-        boolean check = true;
-        LocalDate date = LocalDate.parse(RegexData.regexStr(scanner.nextLine(), REGEX_TIME, "Input date wrong. Input again!"), formatter);
-        LocalDate now = null;
-
-        while (check) {
-            now = LocalDate.now();
-            int current = Period.between(date, now).getYears();
-            if (current >= 18) {
-                check = false;
-            } else {
-                System.out.println("Date must >= 18 years old! Input again!");
-                date = LocalDate.parse(RegexData.regexStr(scanner.nextLine(), REGEX_TIME, "Input date wrong. Input again!"), formatter);
-            }
-        }
+        LocalDate date = inputDate();
 
         System.out.println("Enter employee address: ");
         String address = scanner.nextLine();
@@ -157,52 +102,30 @@ public class EmployeeServiceImpl implements IService {
         ManagerEmployee managerEmployee = new ManagerEmployee(id, idEmployee, name, date, address, baseSalary, factor);
         employeeList.add(managerEmployee);
 
-        String line = "";
-        for (Employee employee : employeeList) {
-            line += employee.getInfo() + "\n";
-        }
-
         System.out.println("Add manager employee successful.");
-        ReadAndWrite.writeTextFile("src\\bai_tap_them\\quan_ly_nhan_vien_abc\\data\\employee.csv", line);
+        ReadAndWrite.writeEmployee();
     }
 
-    public void addProduce() {
-        list = ReadAndWrite.readTextFile("src\\bai_tap_them\\quan_ly_nhan_vien_abc\\data\\employee.csv");
-        employeeList.clear();
-        for (String[] strings : list) {
-            if (strings[1].contains("NVSX")) {
-                ProduceEmployee produceEmployee = new ProduceEmployee(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        LocalDate.parse(strings[3]),
-                        strings[4],
-                        Integer.parseInt(strings[5]),
-                        Double.parseDouble(strings[6]));
-                employeeList.add(produceEmployee);
-            } else {
-                ManagerEmployee managerEmployee = new ManagerEmployee(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        LocalDate.parse(strings[3]),
-                        strings[4],
-                        Double.parseDouble(strings[5]),
-                        Double.parseDouble(strings[6]));
-                employeeList.add(managerEmployee);
-            }
-        }
-
-        int id = 0;
+    public int increaseID() {
+        employeeList = ReadAndWrite.readEmployee();
+        int id;
         int max = 0;
         if (employeeList.size() == 0) {
             id = 1;
         } else {
-            for (int i = 0; i < employeeList.size(); i++) {
-                if (max < employeeList.get(i).getId()) {
-                    max = employeeList.get(i).getId();
+            for (Employee employee : employeeList) {
+                if (max < employee.getId()) {
+                    max = employee.getId();
                 }
             }
             id = max + 1;
         }
+        return id;
+    }
+
+    public void addProduce() {
+        employeeList = ReadAndWrite.readEmployee();
+        int id = increaseID();
 
         System.out.println("Enter employee id: ");
         String idEmployee = RegexData.regexStr(scanner.nextLine(), REGEX_PRODUCE, "ID produce: NVSX-XXX. Input again!");
@@ -210,21 +133,7 @@ public class EmployeeServiceImpl implements IService {
         System.out.println("Enter employee name: ");
         String name = scanner.nextLine();
 
-        System.out.println("Enter employee date: ");
-        boolean check = true;
-        LocalDate date = LocalDate.parse(RegexData.regexStr(scanner.nextLine(), REGEX_TIME, "Input date wrong. Input again!"), formatter);
-        LocalDate now = null;
-
-        while (check) {
-            now = LocalDate.now();
-            int current = Period.between(date, now).getYears();
-            if (current >= 18) {
-                check = false;
-            } else {
-                System.out.println("Date must >= 18 years old! Input again!");
-                date = LocalDate.parse(RegexData.regexStr(scanner.nextLine(), REGEX_TIME, "Input date wrong. Input again!"), formatter);
-            }
-        }
+        LocalDate date = inputDate();
 
         System.out.println("Enter employee address: ");
         String address = scanner.nextLine();
@@ -238,40 +147,13 @@ public class EmployeeServiceImpl implements IService {
         ProduceEmployee produceEmployee = new ProduceEmployee(id, idEmployee, name, date, address, quantity, price);
         employeeList.add(produceEmployee);
 
-        String line = "";
-        for (Employee employee : employeeList) {
-            line += employee.getInfo() + "\n";
-        }
-
         System.out.println("Add manager employee successful.");
-        ReadAndWrite.writeTextFile("src\\bai_tap_them\\quan_ly_nhan_vien_abc\\data\\employee.csv", line);
+        ReadAndWrite.writeEmployee();
     }
 
     @Override
     public void remove() {
-        list = ReadAndWrite.readTextFile("src\\bai_tap_them\\quan_ly_nhan_vien_abc\\data\\employee.csv");
-        employeeList.clear();
-        for (String[] strings : list) {
-            if (strings[1].contains("NVSX")) {
-                ProduceEmployee produceEmployee = new ProduceEmployee(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        LocalDate.parse(strings[3]),
-                        strings[4],
-                        Integer.parseInt(strings[5]),
-                        Double.parseDouble(strings[6]));
-                employeeList.add(produceEmployee);
-            } else {
-                ManagerEmployee managerEmployee = new ManagerEmployee(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        LocalDate.parse(strings[3]),
-                        strings[4],
-                        Double.parseDouble(strings[5]),
-                        Double.parseDouble(strings[6]));
-                employeeList.add(managerEmployee);
-            }
-        }
+        employeeList = ReadAndWrite.readEmployee();
 
         System.out.println("Enter id employee you want to remove:");
         String delIdEmployee = scanner.nextLine();
@@ -297,13 +179,7 @@ public class EmployeeServiceImpl implements IService {
                     employeeList.remove(index);
                     System.out.println("Remove successful.");
 
-                    String line = "";
-
-                    for (Employee employee : employeeList) {
-                        line += employee.getInfo() + "\n";
-                    }
-
-                    ReadAndWrite.writeTextFile("src\\bai_tap_them\\quan_ly_nhan_vien_abc\\data\\employee.csv", line);
+                    ReadAndWrite.writeEmployee();
                     display();
                     break;
                 case "no":
@@ -313,8 +189,8 @@ public class EmployeeServiceImpl implements IService {
             }
         } else {
             try {
-                throw new NotFoundProductException("ID employee is not current!");
-            } catch (NotFoundProductException e) {
+                throw new NotFoundEmployeeException("ID employee is not current!");
+            } catch (NotFoundEmployeeException e) {
                 System.err.println(e.getMessage());
             }
         }
@@ -323,29 +199,7 @@ public class EmployeeServiceImpl implements IService {
 
     @Override
     public void find() {
-        list = ReadAndWrite.readTextFile("src\\bai_tap_them\\quan_ly_nhan_vien_abc\\data\\employee.csv");
-        employeeList.clear();
-        for (String[] strings : list) {
-            if (strings[1].contains("NVSX")) {
-                ProduceEmployee produceEmployee = new ProduceEmployee(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        LocalDate.parse(strings[3]),
-                        strings[4],
-                        Integer.parseInt(strings[5]),
-                        Double.parseDouble(strings[6]));
-                employeeList.add(produceEmployee);
-            } else {
-                ManagerEmployee managerEmployee = new ManagerEmployee(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        LocalDate.parse(strings[3]),
-                        strings[4],
-                        Double.parseDouble(strings[5]),
-                        Double.parseDouble(strings[6]));
-                employeeList.add(managerEmployee);
-            }
-        }
+        employeeList = ReadAndWrite.readEmployee();
 
         System.out.println("Enter anything you want to find:");
         String findStr = scanner.nextLine();
