@@ -198,13 +198,27 @@ public class PersonServiceImpl implements IService {
         String studentID = checkIdStudent();
 
         System.out.println("Enter point:");
-        double point = MyException.checkParseDouble();
+        double point = getPoint();
 
         Student student = new Student(id, name, gender, date, address, studentID, point);
         studentList.add(student);
 
         System.out.println("Add student successful!");
         ReadAndWrite.writeStudent();
+    }
+
+    public double getPoint() {
+        double point;
+        boolean check = true;
+        do {
+            point = MyException.checkParseDouble();
+            if (point >= 0 && point <= 10) {
+                check = false;
+            } else {
+                System.out.println("Point must <= 10 and >=0, try again!");
+            }
+        } while (check);
+        return point;
     }
 
     public String checkIdStudent() {
@@ -256,13 +270,13 @@ public class PersonServiceImpl implements IService {
         teacherList = ReadAndWrite.readTeacher();
 
         System.out.println("Enter id teacher you want to remove:");
-        String id = scanner.nextLine();
+        Integer idTecher = MyException.checkParseInt();
 
         boolean check = false;
         int index = 0;
 
         for (int i = 0; i < teacherList.size(); i++) {
-            if (teacherList.get(i).getId().equals(id)) {
+            if (teacherList.get(i).getId().equals(idTecher)) {
                 check = true;
                 index = i;
                 break;
@@ -270,7 +284,7 @@ public class PersonServiceImpl implements IService {
         }
 
         if (check) {
-            System.out.println("Do you want to remove teacher ID: " + id);
+            System.out.println("Do you want to remove teacher ID: " + idTecher);
             System.out.println("Choose yes or no");
             String result = scanner.nextLine();
 
@@ -280,7 +294,11 @@ public class PersonServiceImpl implements IService {
                     System.out.println("Remove successful.");
 
                     ReadAndWrite.writeTeacher();
-                    display();
+                    System.out.println("List teacher:");
+
+                    for (Teacher teacher : teacherList) {
+                        System.out.println(teacher);
+                    }
                     break;
                 case "no":
                     return;
@@ -300,7 +318,7 @@ public class PersonServiceImpl implements IService {
         studentList = ReadAndWrite.readStudent();
 
         System.out.println("Enter id student you want to remove:");
-        String idStudent = scanner.nextLine();
+        Integer idStudent = MyException.checkParseInt();
 
         boolean check = false;
         int index = 0;
@@ -320,11 +338,15 @@ public class PersonServiceImpl implements IService {
 
             switch (result) {
                 case "yes":
-                    teacherList.remove(index);
+                    studentList.remove(index);
                     System.out.println("Remove successful.");
 
                     ReadAndWrite.writeStudent();
-                    display();
+                    System.out.println("List student:");
+
+                    for (Student student : studentList) {
+                        System.out.println(student);
+                    }
                     break;
                 case "no":
                     return;
@@ -490,7 +512,7 @@ public class PersonServiceImpl implements IService {
             String studentID = checkIdStudent();
 
             System.out.println("Enter point:");
-            double point = MyException.checkParseDouble();
+            double point = getPoint();
 
             studentList.get(index).setName(name);
             studentList.get(index).setGender(gender);
