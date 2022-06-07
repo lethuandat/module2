@@ -1,6 +1,5 @@
 package bai_tap_them.quan_ly_truong_hoc.service;
 
-import bai_tap_them.quan_ly_nhan_vien_abc.model.Employee;
 import bai_tap_them.quan_ly_truong_hoc.exception.IdNotFoundException;
 import bai_tap_them.quan_ly_truong_hoc.exception.MyException;
 import bai_tap_them.quan_ly_truong_hoc.model.Person;
@@ -110,8 +109,8 @@ public class PersonServiceImpl implements IService {
 
         int id = increaseIdTeacher();
 
-        System.out.println("Enter name:");
-        String name = scanner.nextLine();
+        System.out.println("Enter teacher name:");
+        String name = MyException.checkStr();
 
         System.out.println("Enter gender:");
         String gender = chooseGender();
@@ -119,10 +118,10 @@ public class PersonServiceImpl implements IService {
         LocalDate date = inputDate();
 
         System.out.println("Enter address:");
-        String address = scanner.nextLine();
+        String address = MyException.checkStr();
 
         System.out.println("Enter class:");
-        String classTeacher = scanner.nextLine();
+        String classTeacher = MyException.checkStr();
 
         System.out.println("Enter salary / hour");
         double unitSalary = MyException.checkParseDouble();
@@ -135,7 +134,6 @@ public class PersonServiceImpl implements IService {
 
         System.out.println("Add teacher successful!");
         ReadAndWrite.writeTeacher();
-
     }
 
     public String chooseGender() {
@@ -184,8 +182,8 @@ public class PersonServiceImpl implements IService {
 
         int id = increaseIdStudent();
 
-        System.out.println("Enter name:");
-        String name = scanner.nextLine();
+        System.out.println("Enter student name:");
+        String name = MyException.checkStr();
 
         System.out.println("Enter gender:");
         String gender = chooseGender();
@@ -193,7 +191,7 @@ public class PersonServiceImpl implements IService {
         LocalDate date = inputDate();
 
         System.out.println("Enter address:");
-        String address = scanner.nextLine();
+        String address = MyException.checkStr();
 
         String studentID = checkIdStudent();
 
@@ -211,7 +209,7 @@ public class PersonServiceImpl implements IService {
         double point;
         boolean check = true;
         do {
-            point = MyException.checkParseDouble();
+            point = MyException.checkPoint();
             if (point >= 0 && point <= 10) {
                 check = false;
             } else {
@@ -364,10 +362,9 @@ public class PersonServiceImpl implements IService {
 
     @Override
     public void sort() {
-        List<Person> personList = new ArrayList<>();
         studentList = ReadAndWrite.readStudent();
 
-        personList.addAll(studentList);
+        List<Person> personList = new ArrayList<>(studentList);
 
         teacherList = ReadAndWrite.readTeacher();
 
@@ -432,7 +429,7 @@ public class PersonServiceImpl implements IService {
     public void editTeacher() {
         teacherList = ReadAndWrite.readTeacher();
 
-        System.out.println("Enter ID you want edit:");
+        System.out.println("Enter ID teacher you want edit:");
         Integer id = MyException.checkParseInt();
 
         int index = 0;
@@ -447,7 +444,7 @@ public class PersonServiceImpl implements IService {
 
         if (check) {
             System.out.println("Enter name:");
-            String name = scanner.nextLine();
+            String name = MyException.checkStr();
 
             System.out.println("Enter gender:");
             String gender = chooseGender();
@@ -455,10 +452,10 @@ public class PersonServiceImpl implements IService {
             LocalDate date = inputDate();
 
             System.out.println("Enter address:");
-            String address = scanner.nextLine();
+            String address = MyException.checkStr();
 
             System.out.println("Enter class:");
-            String classTeacher = scanner.nextLine();
+            String classTeacher = MyException.checkStr();
 
             System.out.println("Enter salary / hour");
             double unitSalary = MyException.checkParseDouble();
@@ -484,7 +481,7 @@ public class PersonServiceImpl implements IService {
     public void editStudent() {
         studentList = ReadAndWrite.readStudent();
 
-        System.out.println("Enter ID you want edit:");
+        System.out.println("Enter ID student you want edit:");
         Integer id = MyException.checkParseInt();
 
         int index = 0;
@@ -499,7 +496,7 @@ public class PersonServiceImpl implements IService {
 
         if (check) {
             System.out.println("Enter name:");
-            String name = scanner.nextLine();
+            String name = MyException.checkStr();
 
             System.out.println("Enter gender:");
             String gender = chooseGender();
@@ -507,7 +504,7 @@ public class PersonServiceImpl implements IService {
             LocalDate date = inputDate();
 
             System.out.println("Enter address:");
-            String address = scanner.nextLine();
+            String address = MyException.checkStr();
 
             String studentID = checkIdStudent();
 
