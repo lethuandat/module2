@@ -205,7 +205,7 @@ public class EmployeeServiceImpl implements IService {
         boolean check = false;
 
         for (Employee employee : employeeList) {
-            if (employee.getIdEmployee().contains(findStr) || employee.getName().contains(findStr) || employee.getAddress().contains(findStr)) {
+            if (employee.getIdEmployee().contains(findStr) || employee.getName().contains(findStr) || employee.getAddress().contains(findStr) || employee.getDate().toString().contains(findStr)) {
                 check = true;
                 System.out.println(employee);
             }

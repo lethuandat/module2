@@ -47,56 +47,11 @@ public class PatientServiceImpl implements IService {
     }
 
     public void addNormal() {
-        list.clear();
-        list = ReadAndWrite.readTextFile("src\\bai_tap_them\\quan_ly_benh_an\\data\\medical_records.csv");
-        patientList.clear();
-        for (String[] strings : list) {
-            if (strings.length == 8) {
-                NormalPatient normalPatient = new NormalPatient(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        strings[3],
-                        strings[4],
-                        strings[5],
-                        strings[6],
-                        Double.parseDouble(strings[7]));
-                patientList.add(normalPatient);
-            } else {
-                VipPatient vipPatient = new VipPatient(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        strings[3],
-                        strings[4],
-                        strings[5],
-                        strings[6],
-                        strings[7],
-                        strings[8]);
-                patientList.add(vipPatient);
-            }
-        }
+        readPatientFile();
 
-        int numerial = 0;
-        if (patientList.size() == 0) {
-            numerial = 1;
-        } else {
-            numerial = patientList.get(patientList.size() - 1).getNumerical() + 1;
-        }
+        int numerical = getNumerical();
 
-        boolean check = true;
-        String patientID = null;
-
-        //Không cho mã bệnh án trùng
-        do {
-            check = false;
-            System.out.println("Nhập mã bệnh án");
-            patientID = RegexData.regexStr(input.nextLine(), REGEX_ID_PATIENT, "Nhập sai, mã bệnh án phải có dạng BA-XXX");
-            for (Patient item : patientList) {
-                if (item.getPatientID().equals(patientID)) {
-                    check = true;
-                    System.out.println("Mã bệnh án đã tồn tại, nhập lại.");
-                }
-            }
-        } while (check);
+        String patientID = checkIdPatient();
 
         System.out.println("Nhập mã bệnh nhân");
         String patienterID = RegexData.regexStr(input.nextLine(), REGEX_ID_PATIENTER, "Nhập sai, mã bệnh nhân phải có dạng BN-XXX");
@@ -110,9 +65,9 @@ public class PatientServiceImpl implements IService {
         //Ngày ra viện >= ngày nhập viện
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate start = LocalDate.parse(dayStart, formatter);
-        LocalDate end = null;
-        String dayEnd = null;
-        int minus = 0;
+        LocalDate end;
+        String dayEnd;
+        int minus;
         do {
             System.out.println("Nhập ngày ra viện");
             dayEnd = RegexData.regexStr(input.nextLine(), REGEX_TIME, "Nhập sai, ngày tháng phải có dạng dd/mm/yyyy");
@@ -129,58 +84,19 @@ public class PatientServiceImpl implements IService {
         String reason = input.nextLine();
 
         System.out.println("Nhập phí nằm viện: ");
-        Double fee = Double.parseDouble(input.nextLine());
+        double fee = Double.parseDouble(input.nextLine());
 
-        NormalPatient normalPatient = new NormalPatient(numerial, patientID, patienterID, namePatient, dayStart, dayEnd, reason, fee);
+        NormalPatient normalPatient = new NormalPatient(numerical, patientID, patienterID, namePatient, dayStart, dayEnd, reason, fee);
         patientList.add(normalPatient);
 
-        String line = "";
-        for (Patient item : patientList) {
-            line += item.getInfo();
-        }
-
         System.out.println("Thêm mới thành công!");
-        ReadAndWrite.writeTextFile("src\\bai_tap_them\\quan_ly_benh_an\\data\\medical_records.csv", line);
+        writePatientFile();
     }
 
-    public void addVip() {
-        list.clear();
-        list = ReadAndWrite.readTextFile("src\\bai_tap_them\\quan_ly_benh_an\\data\\medical_records.csv");
-        patientList.clear();
-        for (String[] strings : list) {
-            if (strings.length == 8) {
-                NormalPatient normalPatient = new NormalPatient(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        strings[3],
-                        strings[4],
-                        strings[5],
-                        strings[6],
-                        Double.parseDouble(strings[7]));
-                patientList.add(normalPatient);
-            } else {
-                VipPatient vipPatient = new VipPatient(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        strings[3],
-                        strings[4],
-                        strings[5],
-                        strings[6],
-                        strings[7],
-                        strings[8]);
-                patientList.add(vipPatient);
-            }
-        }
+    public String checkIdPatient() {
+        boolean check;
+        String patientID;
 
-        int numerial = 0;
-        if (patientList.size() == 0) {
-            numerial = 1;
-        } else {
-            numerial = patientList.get(patientList.size() - 1).getNumerical() + 1;
-        }
-
-        boolean check = true;
-        String patientID = null;
         //Không cho mã bệnh án trùng
         do {
             check = false;
@@ -193,6 +109,15 @@ public class PatientServiceImpl implements IService {
                 }
             }
         } while (check);
+        return patientID;
+    }
+
+    public void addVip() {
+        readPatientFile();
+
+        int numerical = getNumerical();
+
+        String patientID = checkIdPatient();
 
         System.out.println("Nhập mã bệnh nhân");
         String patienterID = RegexData.regexStr(input.nextLine(), REGEX_ID_PATIENTER, "Nhập sai, mã bệnh nhân phải có dạng BN-XXX");
@@ -206,9 +131,9 @@ public class PatientServiceImpl implements IService {
         //Ngày ra viện >= ngày nhập viện
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate start = LocalDate.parse(dayStart, formatter);
-        LocalDate end = null;
-        String dayEnd = null;
-        int minus = 0;
+        LocalDate end;
+        String dayEnd;
+        int minus;
         do {
             System.out.println("Nhập ngày ra viện");
             dayEnd = RegexData.regexStr(input.nextLine(), REGEX_TIME, "Nhập sai, ngày tháng phải có dạng dd/mm/yyyy");
@@ -229,16 +154,21 @@ public class PatientServiceImpl implements IService {
         System.out.println("Nhập thời hạn vip: ");
         String duration = RegexData.regexStr(input.nextLine(), REGEX_TIME, "Nhập sai, ngày tháng phải có dạng dd/mm/yyyy");
 
-        VipPatient vipPatient = new VipPatient(numerial, patientID, patienterID, namePatient, dayStart, dayEnd, reason, type, duration);
+        VipPatient vipPatient = new VipPatient(numerical, patientID, patienterID, namePatient, dayStart, dayEnd, reason, type, duration);
         patientList.add(vipPatient);
 
-        String line = "";
-        for (Patient item : patientList) {
-            line += item.getInfo();
-        }
-
         System.out.println("Thêm mới thành công!");
-        ReadAndWrite.writeTextFile("src\\bai_tap_them\\quan_ly_benh_an\\data\\medical_records.csv", line);
+        writePatientFile();
+    }
+
+    public int getNumerical() {
+        int numerical;
+        if (patientList.size() == 0) {
+            numerical = 1;
+        } else {
+            numerical = patientList.get(patientList.size() - 1).getNumerical() + 1;
+        }
+        return numerical;
     }
 
     public String chooseType() {
@@ -263,38 +193,12 @@ public class PatientServiceImpl implements IService {
 
     @Override
     public void remove() {
-        list.clear();
-        list = ReadAndWrite.readTextFile("src\\bai_tap_them\\quan_ly_benh_an\\data\\medical_records.csv");
-        patientList.clear();
-        for (String[] strings : list) {
-            if (strings.length == 8) {
-                NormalPatient normalPatient = new NormalPatient(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        strings[3],
-                        strings[4],
-                        strings[5],
-                        strings[6],
-                        Double.parseDouble(strings[7]));
-                patientList.add(normalPatient);
-            } else {
-                VipPatient vipPatient = new VipPatient(Integer.parseInt(strings[0]),
-                        strings[1],
-                        strings[2],
-                        strings[3],
-                        strings[4],
-                        strings[5],
-                        strings[6],
-                        strings[7],
-                        strings[8]);
-                patientList.add(vipPatient);
-            }
-        }
+        readPatientFile();
 
         System.out.println("Nhập mã bệnh án");
-        String patientID = null;
+        String patientID;
 
-        boolean flag = true;
+        boolean flag;
         do {
             flag = false;
             patientID = input.nextLine();
@@ -326,12 +230,7 @@ public class PatientServiceImpl implements IService {
                     patientList.remove(index);
                     System.out.println("Xóa thành công!");
 
-                    String line = "";
-                    for (Patient item : patientList) {
-                        line += item.getInfo();
-                    }
-
-                    ReadAndWrite.writeTextFile("src\\bai_tap_them\\quan_ly_benh_an\\data\\medical_records.csv", line);
+                    writePatientFile();
                     display();
                     break;
                 case "no":
@@ -344,9 +243,25 @@ public class PatientServiceImpl implements IService {
         }
     }
 
+    public void writePatientFile() {
+        StringBuilder line = new StringBuilder();
+        for (Patient item : patientList) {
+            line.append(item.getInfo());
+        }
+
+        ReadAndWrite.writeTextFile("src\\bai_tap_them\\quan_ly_benh_an\\data\\medical_records.csv", line.toString());
+    }
+
     @Override
     public void display() {
-        list.clear();
+        readPatientFile();
+
+        for (Patient item : patientList) {
+            System.out.println(item);
+        }
+    }
+
+    public void readPatientFile() {
         list = ReadAndWrite.readTextFile("src\\bai_tap_them\\quan_ly_benh_an\\data\\medical_records.csv");
         patientList.clear();
         for (String[] strings : list) {
@@ -372,10 +287,6 @@ public class PatientServiceImpl implements IService {
                         strings[8]);
                 patientList.add(vipPatient);
             }
-        }
-
-        for (Patient item : patientList) {
-            System.out.println(item);
         }
     }
 }
